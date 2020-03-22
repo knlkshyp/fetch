@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch</title>
+</head>
+
+<body>
+    <button id='fetch-button'>Fetch Greet</button>
+    <p id='para'></p>
+</body>
+<script>
+    let button = document.getElementById('fetch-button');
+    let para = document.getElementById('para');
+    let url = 'http://localhost:3000';
+    button.addEventListener('click', () => {
+       fetch(url, {
+        mode: 'cors'                        // To resolve CORS blocking issue
+       }).then(response => {
+           return response.text();          // fetch returned a resolved promise 
+       }).then(data => {
+           para.innerHTML = data;
+       }).catch(err => {
+           console.log('Something went wrong');
+       });
+    });
+</script>
+
+</html>
